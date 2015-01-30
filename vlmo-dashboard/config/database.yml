@@ -1,0 +1,35 @@
+mysql: &mysql
+  adapter: mysql2
+  encoding: utf8
+  checkout_timeout: 5
+  pool: 5
+
+development:
+  <<: *mysql
+  host: localhost
+  database: rpt_dashboard_development
+  username: root
+  password: verve-2013
+  reconnect: false
+
+beta:
+  <<: *mysql
+  host: ccccccccccccc
+  database: ccccccccccc
+  username: cccccccccc
+  password: cccccccccccccccc
+  reconnect: true
+
+production:
+  <<: *mysql
+  host: ccccccccccccccccccc
+  database: ccccccccccc
+  username: cccccccccccccc
+  password: ccccccccccccccccccccc
+  reconnect: true
+
+test:
+  adapter: sqlite3
+  database: ":memory:"
+  pool: 5
+  timeout: 5000

@@ -1,0 +1,68 @@
+%nav.navbar{:role => "navigation", :style => "margin-top: 10px;"}
+  %div(class="collapse navbar-collapse navbar-ex1-collapse")
+    %div(class="navbar-form navbar-left" role="export")
+    %form(class="navbar-form navbar-right" role="export")
+      %div.form-group
+        %select(class="form-control input-sm" id="selectbox_agency")
+      %div.form-group
+        %div(id="overview-date_range" class="form-control input-sm")
+          %i(class="icon-calendar icon-large")
+          %span
+          %b.caret
+          %input(type="hidden" value="")
+%div.row
+  %div.col-md-6
+    %div(id="container" style="min-width: 310px; height: 350px; margin: 0 auto")
+  %div.col-md-6
+    %div(id="container2" style="min-width: 310px; height: 350px; margin: 0 auto")
+  %div.col-md-3(style="display: none;")
+    %div(class="well well-sm summary_well")
+    %h2(style="margin-top: 0px;") Summary
+    %ul.list-group
+      %li.list-group-item 
+        ="Impressions/Day"
+        %span(class="badge av-impressions") 0
+      %li.list-group-item 
+        ="Clicks/Day"
+        %span(class="badge av-clicks") 0        
+      %li.list-group-item 
+        ="Pub Net Revenue/Day"
+        %span(class="badge av-pub-net-revenue") 0
+      %li.list-group-item 
+        ="Profit Margin/Day"
+        %span(class="badge av-profit-margin") 0
+%div.row
+  %div.col-md-10
+  %div.col-md-2
+    %div(id="exportBt" class="btn-group btn-group-sm" style="float: right;margin-bottom: 10px;margin-top: 10px;")
+      %button(type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown")
+        ="Export Data" 
+        %span.caret
+      %ul(class="dropdown-menu" role="menu")
+        %li
+          %a(href="#" class="export_bt") xls
+        %li
+          %a(href="#" class="export_bt") csv       
+%div.row
+  %div.col-md-12
+    %div(class="panel panel-default")
+      %div(class="panel-body" style="padding: 0px;")
+        %table(id="dashboard-overview-dataTable" class="dataTable")
+%div.row
+  %div.col-md-10
+  %div.col-md-2
+    %ul.pager
+      %li
+        %a(href="#" onclick="disabledEventPropagation(event);myTable.next();") Previous     
+      %li
+        %a(href="#" onclick="disabledEventPropagation(event);myTable.previous();") Next 
+%div.row
+  %div.col-md-12
+    %p
+      %a(href="http://wiki.vervewireless.com/confluence/pages/viewpage.action?pageId=30475846") Why are these numbers different than I expect?
+    %p NOTE
+    %ul
+      %li Today's data is not included.
+      %li Figures shown are preliminary and subject to review and audit. Your reconciled net earnings will appear on your monthly statements.
+      %li Data is updated at approximately noon EST every day.                              
+%script(src="/assets/controls/dashboardOverview.js")  

@@ -1,0 +1,101 @@
+-    require 'digest'
+-    @md5 = Digest::MD5.new
+-    @md5.update current_user.email
+%html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en")
+  %head 
+    %link{:href=>"https://df9urjk039lhc.cloudfront.net/assets/favicon-68ac198092837bfbc600263a7c29c904.png", :rel=>"shortcut icon"}
+    %meta{:charset=>"utf-8"}
+    %meta(http-equiv="X-UA-Compatible"){:content=>"IE=Edge,chrome=1"}
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
+    %title=content_for?(:title) ? yield(:title) : "Verve mobile"
+    %link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet")
+    =csrf_meta_tags
+    
+    /Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    =stylesheet_link_tag "application", :media => "all"
+    
+    /For third-generation iPad with high-resolution Retina display:
+    /Size should be 144 x 144 pixels
+    =favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    
+    /For iPhone with high-resolution Retina display:
+    /Size should be 114 x 114 pixels
+    =favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    
+    /For first- and second-generation iPad:
+    /Size should be 72 x 72 pixels
+    =favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    
+    /For non-Retina iPhone, iPod Touch, and Android 2.1+ devices:
+    /Size should be 57 x 57 pixels
+    =favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    
+    /For all other devices
+    /Size should be 32 x 32 pixels
+    =favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    
+    =javascript_include_tag "application"
+    
+  %body
+    %div{:class=>['navbar','navbar-inverse','navbar-fixed-top'],:style=>"border: none"}
+      .navbar-inner{:style=>"background-image: url(#{image_url 'reports_back-fb.png'}); height: 90px; padding-top: 10px"}
+        .container
+          .navbar-header
+            %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %img(alt="Verve logo" src="#{image_url 'verve-logo.png'}")
+          %div(class="navbar-collapse collapse")
+            %a.navbar-brand{:href=>"#",:style=>"color: white; font-size: 15pt;"}VLMO DashBoard
+            %form{:class=>"navbar-form navbar-right",:action=>"https://#{Settings.apiURL}",:role=>"search"}
+              .form-group
+                .btn-group{:style=>"float: right; margin-right: 0px"}
+                  %a.dropdown-toggle(data-toggle="dropdown" href="#"  style="color: white; margin-left: 10px; margin-right: 10px;")
+                    %img.gravatar{:src=>"https://secure.gravatar.com/avatar/#{@md5.hexdigest}.png?s=20"}
+                      =current_user.email
+                      %span.caret{:style=>"border-top: 4px solid #FFF;"}
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href=>"http://gravatar.com", :target=>"_blank"}
+                        %i{:class=>"fa fa-user"}
+                        Change Avatar
+                      %a{:href=>"https://sso.vervemobile.com/sign_out"}
+                        %i{:class=>"fa fa-sign-out"}
+                        Logout
+                %span{:style=>"float: right; margin-right: 5px; color: white;"}Welcome back
+              %button(type="submit" class="btn btn-xs btn-success")API Access
+    %div#index_container{:class=>"container theme-showcase loadingDots"}
+      %div#page-tab{:class=>"container theme-showcase",:style=>"padding-top: 110px;"}
+        %ul{:class=>"nav nav-tabs"}
+          %li{:title=>"Dashboard Overview"}
+            %a{:href=>"/overview"}DashBoard Overview
+          %li{:title=>"Running Revenue"}
+            %a{:href=>"/running-revenue"}Running Revenue
+          %li{:title=>"Network Overview"}
+            %a{:href=>"/network-overview"}Network Overview        
+      %div#subPageContent 
+        =bootstrap_flash
+        =yield
+    %div.footer
+      %div.container
+        %div.row
+          %div.span6 
+            ="Copyright ©2014 Verve Wireless, Inc. All rights reserved. Read"
+            %a{:href=>"http://vervemobile.com/tandc.html"} terms
+            %a{:href=>"http://vervemobile.com/privacy.html"} privacy policy
+          .span6
+            %p.footer-right
+              %a{:href=>"http://vervemobile.com/"} About Verve
+              %a{:href=>"http://support.vervemobile.com/"} Help Center
+              %a{:href=>"mailto:adops@vervemobile.com"} Email Us
+              %a{:href=>"tel:+18005950842"} 
+                %strong 1-800-595-0842
+            %h3.footer-right
+              %a{:href=>"https://twitter.com/vervemobile",:target=>"_blank"}
+                %i{:class=>"fa fa-twitter"}
+              %a{:href=>"http://www.facebook.com/VerveMobile",:target=>"_blank"}
+                %i{:class=>"fa fa-facebook-square"}
+              %a.linkedin{:href=>"https://twitter.com/vervemobile",:target=>"_blank"}
+                %i{:class=>"fa fa-linkedin-square"}

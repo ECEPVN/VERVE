@@ -1,0 +1,75 @@
+%div.page-header
+  %div(class="btn-group pull-right")
+    %form(class="for-control" role="export")
+      %div.form-group(style="display:none")
+        %select(class="form-control input-sm" id="selectbox_month_sk")
+          %option{:value=>0} All month
+          %option{:value=>113} 2014-May
+          %option{:value=>112} 2014-Apr
+  %h1{:id=>"page_header"} 
+    ="Running Revenue"
+    %small#dataDate
+%table#summaryTable(class="table table-bordered table-striped table-hover")
+  %thead
+    %tr
+      %th(class="buttons" colspan="7") Summary
+    %tr
+      %th.col-md-3 VLMO Agency    
+      %th.col-md-1 ADM Account ID
+      %th(class="col-md-1 right") Delivered Imps
+      %th(class="col-md-1 right") Billable Rate
+      %th(class="col-md-2 right") Gross Revenue
+      %th(class="col-md-2 right") Pub Net Revenue
+      %th(class="col-md-2 right") Profit Margin
+  %tbody
+%ul(class="nav nav-tabs" style="margin-bottom: 10px;" id="subTab")
+  %li(title="Campaign" class="active")
+    %a(href="#" onclick="urlMaster.replaceParam('detail','campaign');urlMaster.replaceParam('page',1);loadRunningDetail();") Merchant -> Campaign
+  %li(title="Offer")
+    %a(href="#" onclick="urlMaster.replaceParam('detail','offer');urlMaster.replaceParam('page',1);loadRunningDetail();") Merchant -> Offer
+  %li(title="Subscription")
+    %a(href="#" onclick="urlMaster.replaceParam('detail','subscription');urlMaster.replaceParam('page',1);loadRunningDetail();") Merchant -> Subscription
+  %li(title="Tiers and rate")
+    %a(href="#" onclick="urlMaster.replaceParam('detail','tierRate');urlMaster.replaceParam('page',1);loadRunningDetail();") Tiers & Rate Details 
+%div#detailDiv
+  %table#detailTable(class="table table-bordered table-striped table-hover")
+    %thead
+      %tr
+        %th(class="buttons" colspan="8")
+          %span.detailTitlte Detail
+          %div.pull-right
+            %form(role="form" class="form-inline")
+              .form-group
+                %select(class="form-control input-sm" id="selectbox_agency")
+              .form-group(style="display:none")
+                %input(class="form-control input-sm" id="search_input" name="search" placeholder="Search by Merchant" type="text")
+      %tr
+        %th.col-md-2 Merchant
+        %th(class="col-md-4" name="detailType") Campaign
+        %th.col-md-1 Booked Imps
+        %th.col-md-1 Delivered Imps
+        %th.col-md-1 Billable Imps
+        %th.col-md-1 Clicks
+        %th.col-md-1 Billable Rate
+        %th.col-md-1 Gross Revenue
+    %tbody
+#tiers_and_rate
+  %table#detailTableTierAndRate(class="table table-bordered table-striped table-hover") 
+    %thead
+      %tr
+        %th(class="buttons" colspan="3") 
+          %span.detailTitlte Detail
+      %tr
+        %th.col-md-8 VLMO Agency  
+        %th.col-md-2 Impressions
+        %th.col-md-2 Billable Rate
+    %tbody
+%div.row
+  %div.col-md-10
+  %div.col-md-2
+    %ul.pager
+      %li
+        %a(href="#" onClick="jumpPage(-1,function(){loadRunningDetail();})") Previous     
+      %li
+        %a(href="#" onClick="jumpPage(1,function(){loadRunningDetail();})") Next 
+%script(src="/assets/controls/runningRevenue.js")        

@@ -1,0 +1,81 @@
+%nav(class="navbar" role="navigation" style="margin-top: 10px;")
+  %div(class="collapse navbar-collapse navbar-ex1-collapse")
+    %div(class="navbar-form navbar-left" role="export")
+      %h1 Daily Network Overview
+    %form(class="navbar-form navbar-right" role="export")
+      .form-group
+        %div(id="overview-date_range" class="form-control input-sm")
+          %i(class="icon-calendar icon-large")
+          %span
+          %b.caret
+          %input(type="hidden" value="")
+      .form-group
+        %div(id="exportBt" class="btn-group btn-group-sm" style="float: right; margin-bottom: 10px; margin-top: 10px;")
+          %button(type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown")
+            ="Export Data"
+            %span.caret
+          %ul(class="dropdown-menu" role="menu")
+            %li
+              %a.export_bt{:href=>"#"} xls
+            %li
+              %a.export_bt{:href=>"#"} csv
+%table(id="dataTable" class="table table-bordered table-striped table-hover table-condensed")
+  %thead
+    %tr
+      %th.buttons{:colspan=>13}
+    %tr
+      %th.col-md-1 Date
+      %th.col-md-3 Site/app
+      %th.right Impressions
+      %th.right Clicks
+      %th.right 
+        ="CTA"
+        %br
+        ="LP"
+      %th.right 
+        ="CTA"
+        %br
+        ="Call"
+      %th.right 
+        ="CTA Save"
+        %br
+        ="Coupon"
+      %th.right 
+        ="CTA"
+        %br
+        ="MAP"
+      %th.right 
+        ="CTA"
+        %br
+        ="Facebook"
+      %th.right 
+        ="CTA"
+        %br
+        ="Twitter"  
+      %th.right 
+        ="CTR %"          
+      %th.right 
+        ="Total"
+        %br
+        ="CTAs"            
+      %th.right 
+        ="CTA %"   
+  %tbody
+%div.row
+  %div.col-md-10
+  %div.col-md-2
+    %ul.pager
+      %li
+        %a(href="#" onClick="jumpPage(-1,function(){loadData();})") Previous     
+      %li
+        %a(href="#" onClick="jumpPage(1,function(){loadData();})") Next 
+.row
+  .col-md-12
+    %p
+      %a{:href=>"http://wiki.vervewireless.com/confluence/pages/viewpage.action?pageId=30475846"} are these numbers different than I expect?
+    %p NOTE
+    %ul
+      %li Today's data is not included.                                       
+      %li Figures shown are preliminary and subject to review and audit. Your reconciled net earnings will appear on your monthly statements.                                  
+      %li Data is updated at approximately noon EST every day.
+%script(src="/assets/controls/networkOverview.js")                                   
